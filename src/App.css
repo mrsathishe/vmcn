@@ -5,10 +5,11 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: #333 !important;
   scroll-behavior: smooth;
+  background-color: #ffffff;
 }
 
 .App {
@@ -31,12 +32,50 @@ main {
   --dark-gray: #7f8c8d;
   --white: #ffffff;
   --black: #2c3e50;
+  --text-color: #333333;
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--primary-color);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary-color) !important;
   margin-bottom: 1rem;
+}
+
+/* Ensure all text elements have proper colors */
+p,
+span,
+div,
+li {
+  color: var(--dark-gray) !important;
+}
+
+/* Override for specific elements that should be dark */
+.product-card h3,
+.service-card h3,
+.value-card h4 {
+  color: var(--primary-color) !important;
+}
+
+.product-description,
+.service-description {
+  color: var(--dark-gray) !important;
+}
+
+/* Additional text color fixes */
+.product-card p,
+.product-card li,
+.product-card span {
+  color: var(--dark-gray) !important;
+}
+
+.section-title,
+.section-subtitle {
+  color: var(--primary-color) !important;
 }
 
 h1 {
@@ -56,7 +95,7 @@ h3 {
 
 p {
   margin-bottom: 1rem;
-  color: var(--dark-gray);
+  color: var(--dark-gray) !important;
 }
 
 /* Buttons */
@@ -151,13 +190,13 @@ p {
   background: var(--white);
   border-radius: 10px;
   padding: 2rem;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* Animations */
@@ -181,15 +220,15 @@ p {
   h1 {
     font-size: 2rem;
   }
-  
+
   h2 {
     font-size: 1.5rem;
   }
-  
+
   .section {
     padding: 60px 0;
   }
-  
+
   .container {
     padding: 0 15px;
   }
@@ -199,7 +238,7 @@ p {
   h1 {
     font-size: 1.8rem;
   }
-  
+
   .btn {
     width: 100%;
     margin-bottom: 1rem;

@@ -14,7 +14,7 @@
   padding: 2.5rem;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   border: 1px solid var(--light-gray);
   position: relative;
@@ -22,13 +22,17 @@
 }
 
 .service-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+  background: linear-gradient(
+    90deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -40,13 +44,17 @@
 
 .service-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .service-icon {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -58,7 +66,7 @@
 }
 
 .service-icon::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px;
   left: -10px;
@@ -103,7 +111,7 @@
 }
 
 .service-features li::before {
-  content: '✓';
+  content: "✓";
   position: absolute;
   left: 0;
   color: var(--success-color);
@@ -116,7 +124,11 @@
 }
 
 .services-cta {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   border-radius: 20px;
   padding: 3rem;
   text-align: center;
@@ -126,13 +138,13 @@
 }
 
 .services-cta::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
 }
 
@@ -175,25 +187,25 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
   }
-  
+
   .service-card {
     padding: 2rem;
   }
-  
+
   .service-icon {
     width: 60px;
     height: 60px;
     font-size: 1.5rem;
   }
-  
+
   .service-card h3 {
     font-size: 1.3rem;
   }
-  
+
   .services-cta {
     padding: 2rem;
   }
-  
+
   .services-cta h3 {
     font-size: 1.5rem;
   }
@@ -203,11 +215,11 @@
   .services-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .service-card {
     padding: 1.5rem;
   }
-  
+
   .services-cta {
     padding: 1.5rem;
   }

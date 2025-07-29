@@ -1,41 +1,48 @@
-import React, { useState, useRef } from 'react'
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaPaperPlane, FaFile } from 'react-icons/fa'
-import emailjs from '@emailjs/browser'
-import './Contact.css'
+import React, { useState, useRef } from "react";
+import {
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaClock,
+  FaPaperPlane,
+  FaFile,
+} from "react-icons/fa";
+import emailjs from "@emailjs/browser";
+import "./Contact.css";
 
 const Contact = () => {
-  const formRef = useRef()
+  const formRef = useRef();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-    attachments: []
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState('')
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+    attachments: [],
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState("");
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
-    }))
-  }
+      [name]: value,
+    }));
+  };
 
   const handleFileChange = (e) => {
-    const files = Array.from(e.target.files)
-    setFormData(prev => ({
+    const files = Array.from(e.target.files);
+    setFormData((prev) => ({
       ...prev,
-      attachments: files
-    }))
-  }
+      attachments: files,
+    }));
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus('')
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("");
 
     try {
       // Note: For EmailJS to work with attachments, you need to configure it properly
@@ -46,88 +53,86 @@ const Contact = () => {
         phone: formData.phone,
         subject: formData.subject,
         message: formData.message,
-        to_email: 'info@vmcn.com', // Replace with actual email from PDF
-        attachments_count: formData.attachments.length
-      }
+        to_email: "vmcomputersnetworking@gmail.com", // Updated email from specifications
+        attachments_count: formData.attachments.length,
+      };
 
       // Replace these with your actual EmailJS credentials
       await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
+        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
         templateParams,
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
-      )
+        "YOUR_PUBLIC_KEY" // Replace with your EmailJS public key
+      );
 
-      setSubmitStatus('success')
+      setSubmitStatus("success");
       setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-        attachments: []
-      })
-      
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+        attachments: [],
+      });
+
       // Reset file input
       if (formRef.current) {
-        const fileInput = formRef.current.querySelector('input[type="file"]')
-        if (fileInput) fileInput.value = ''
+        const fileInput = formRef.current.querySelector('input[type="file"]');
+        if (fileInput) fileInput.value = "";
       }
-
     } catch (error) {
-      console.error('EmailJS Error:', error)
-      setSubmitStatus('error')
+      console.error("EmailJS Error:", error);
+      setSubmitStatus("error");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const contactInfo = [
     {
       icon: <FaPhone />,
-      title: 'Phone',
-      details: ['+1 (555) 123-4567', '+1 (555) 123-4568'],
-      link: 'tel:+15551234567'
+      title: "Phone",
+      details: ["+91 9345305055"],
+      link: "tel:+919345305055",
     },
     {
       icon: <FaEnvelope />,
-      title: 'Email',
-      details: ['info@vmcn.com', 'support@vmcn.com'],
-      link: 'mailto:info@vmcn.com'
+      title: "Email",
+      details: ["vmcomputersnetworking@gmail.com"],
+      link: "mailto:vmcomputersnetworking@gmail.com",
     },
     {
       icon: <FaMapMarkerAlt />,
-      title: 'Address',
-      details: ['123 Business Avenue', 'Suite 100, City, State 12345'],
-      link: '#'
+      title: "Locations",
+      details: ["Tamil Nadu, Puducherry", "Kerala & Karnataka"],
+      link: "#",
     },
     {
       icon: <FaClock />,
-      title: 'Business Hours',
-      details: ['Mon - Fri: 9:00 AM - 6:00 PM', 'Sat: 10:00 AM - 4:00 PM'],
-      link: '#'
-    }
-  ]
+      title: "Business Hours",
+      details: ["Monday–Friday: 9 AM – 6 PM", "Saturday–Sunday: 10 AM – 5 PM"],
+      link: "#",
+    },
+  ];
 
   return (
     <section id="contact" className="section contact">
       <div className="container">
-        <h2 className="section-title">Get In Touch</h2>
-        <p className="section-subtitle">
-          Ready to transform your business? Contact us today for a free consultation
-        </p>
-        
+        <h2 className="section-title">VM COMPUTERS AND NETWORKING</h2>
+        <p className="section-subtitle">Owner: Vignesh Mahalingam</p>
+
         <div className="contact-content">
           <div className="contact-info">
             <h3>Contact Information</h3>
-            <p>We're here to help you succeed. Reach out to us through any of the following channels:</p>
-            
+            <p>
+              We're here to help you succeed. Reach out to us through any of the
+              following channels:
+            </p>
+
             <div className="contact-items">
               {contactInfo.map((item, index) => (
                 <div key={index} className="contact-item">
-                  <div className="contact-icon">
-                    {item.icon}
-                  </div>
+                  <div className="contact-icon">{item.icon}</div>
                   <div className="contact-details">
                     <h4>{item.title}</h4>
                     {item.details.map((detail, detailIndex) => (
@@ -137,20 +142,26 @@ const Contact = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className="contact-cta">
               <h4>Need Immediate Assistance?</h4>
-              <p>Call us directly for urgent matters or schedule a consultation.</p>
+              <p>
+                Call us directly for urgent matters or schedule a consultation.
+              </p>
               <button className="btn btn-secondary">
                 <FaPhone /> Call Now
               </button>
             </div>
           </div>
-          
+
           <div className="contact-form-section">
-            <form ref={formRef} onSubmit={handleSubmit} className="contact-form">
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className="contact-form"
+            >
               <h3>Send Us a Message</h3>
-              
+
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="name">Full Name *</label>
@@ -164,7 +175,7 @@ const Contact = () => {
                     placeholder="Enter your full name"
                   />
                 </div>
-                
+
                 <div className="form-group">
                   <label htmlFor="email">Email Address *</label>
                   <input
@@ -178,7 +189,7 @@ const Contact = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="phone">Phone Number</label>
@@ -191,7 +202,7 @@ const Contact = () => {
                     placeholder="Enter your phone number"
                   />
                 </div>
-                
+
                 <div className="form-group">
                   <label htmlFor="subject">Subject *</label>
                   <select
@@ -211,7 +222,7 @@ const Contact = () => {
                   </select>
                 </div>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="message">Message *</label>
                 <textarea
@@ -224,7 +235,7 @@ const Contact = () => {
                   placeholder="Tell us about your project or inquiry..."
                 ></textarea>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="attachments">Attachments</label>
                 <div className="file-input-wrapper">
@@ -241,37 +252,44 @@ const Contact = () => {
                   {formData.attachments.length > 0 && (
                     <div className="file-list">
                       {Array.from(formData.attachments).map((file, index) => (
-                        <span key={index} className="file-item">{file.name}</span>
+                        <span key={index} className="file-item">
+                          {file.name}
+                        </span>
                       ))}
                     </div>
                   )}
                 </div>
-                <small>Supported formats: PDF, DOC, DOCX, JPG, PNG, TXT (Max 10MB each)</small>
+                <small>
+                  Supported formats: PDF, DOC, DOCX, JPG, PNG, TXT (Max 10MB
+                  each)
+                </small>
               </div>
-              
-              <button 
-                type="submit" 
+
+              <button
+                type="submit"
                 className="btn btn-primary submit-btn"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
-                  'Sending...'
+                  "Sending..."
                 ) : (
                   <>
                     <FaPaperPlane /> Send Message
                   </>
                 )}
               </button>
-              
-              {submitStatus === 'success' && (
+
+              {submitStatus === "success" && (
                 <div className="form-message success">
-                  Message sent successfully! We'll get back to you within 24 hours.
+                  Message sent successfully! We'll get back to you within 24
+                  hours.
                 </div>
               )}
-              
-              {submitStatus === 'error' && (
+
+              {submitStatus === "error" && (
                 <div className="form-message error">
-                  Failed to send message. Please try again or contact us directly.
+                  Failed to send message. Please try again or contact us
+                  directly.
                 </div>
               )}
             </form>
@@ -279,7 +297,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

@@ -37,7 +37,7 @@
   padding: 1.5rem;
   border-radius: 10px;
   border-left: 4px solid var(--secondary-color);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .highlight-item h4 {
@@ -61,26 +61,30 @@
 .image-placeholder {
   width: 400px;
   height: 300px;
-  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--white);
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
 }
 
 .image-placeholder::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
 }
 
@@ -123,20 +127,24 @@
   padding: 2rem;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-top: 4px solid var(--secondary-color);
 }
 
 .value-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .value-icon {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -163,33 +171,33 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  
+
   .about-text .section-title {
     text-align: center;
   }
-  
+
   .about-text .section-subtitle {
     text-align: center;
   }
-  
+
   .image-placeholder {
     width: 300px;
     height: 250px;
   }
-  
+
   .image-content h3 {
     font-size: 2.5rem;
   }
-  
+
   .values-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
   }
-  
+
   .value-card {
     padding: 1.5rem;
   }
-  
+
   .value-icon {
     width: 60px;
     height: 60px;
@@ -201,12 +209,12 @@
   .values-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .image-placeholder {
     width: 250px;
     height: 200px;
   }
-  
+
   .image-content h3 {
     font-size: 2rem;
   }
