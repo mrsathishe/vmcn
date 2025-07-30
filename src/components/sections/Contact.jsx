@@ -213,12 +213,19 @@ const Contact = () => {
                     required
                   >
                     <option value="">Select a subject</option>
-                    <option value="consultation">Free Consultation</option>
-                    <option value="services">Services Inquiry</option>
-                    <option value="products">Product Information</option>
-                    <option value="support">Technical Support</option>
-                    <option value="partnership">Partnership Opportunity</option>
-                    <option value="other">Other</option>
+                    <option value="consultation">Free Network Consultation</option>
+                    <option value="enterprise-networking">Enterprise Network Setup</option>
+                    <option value="home-networking">Home Network Solutions</option>
+                    <option value="security-solutions">Network Security Solutions</option>
+                    <option value="wifi-installation">WiFi Installation & Optimization</option>
+                    <option value="server-setup">Server Setup & Configuration</option>
+                    <option value="it-support">IT Support & Maintenance</option>
+                    <option value="computer-repair">Computer Repair Services</option>
+                    <option value="hardware-procurement">Hardware Procurement</option>
+                    <option value="backup-solutions">Backup & Recovery Solutions</option>
+                    <option value="cctv-installation">CCTV & Surveillance Systems</option>
+                    <option value="partnership">Business Partnership</option>
+                    <option value="other">Other Inquiry</option>
                   </select>
                 </div>
               </div>
