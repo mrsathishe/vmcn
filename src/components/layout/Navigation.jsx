@@ -6,6 +6,7 @@ import "./Navigation.scss";
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,34 @@ const Navigation = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Track active section using Intersection Observer
+  useEffect(() => {
+    const sections = document.querySelectorAll("[id]");
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -80% 0px", // Trigger when section is 20% from top
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        observer.unobserve(section);
+      });
+    };
   }, []);
 
   // Disable body scroll when mobile menu is open
@@ -65,7 +94,9 @@ const Navigation = () => {
             {menuItems.map((item) => (
               <div key={item.id} className="nav-item">
                 <button
-                  className="nav-link"
+                  className={`nav-link ${
+                    activeSection === item.id ? "active" : ""
+                  }`}
                   onClick={() => scrollToSection(item.id)}
                 >
                   {item.label}

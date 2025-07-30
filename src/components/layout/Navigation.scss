@@ -157,6 +157,26 @@
     }
   }
 
+  // Active state styles
+  &.active {
+    color: color(secondary);
+    background-color: rgba(color(secondary), 0.1);
+
+    &::after {
+      width: 80%;
+
+      @include respond-below(md) {
+        display: none;
+      }
+    }
+
+    @include respond-below(md) {
+      background-color: rgba(color(secondary), 0.15);
+      color: color(secondary);
+      font-weight: font-weight(bold);
+    }
+  }
+
   @include respond-below(md) {
     width: 100%;
     text-align: center;
@@ -217,7 +237,7 @@
     @include respond-below(md) {
       display: flex;
       justify-content: center;
-      margin-top: auto;
+      // margin-top: auto;
       margin-bottom: spacing(8);
       margin-left: 0;
       padding-left: 0;

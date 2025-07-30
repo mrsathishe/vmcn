@@ -93,8 +93,8 @@
     margin-bottom: spacing(4);
 
     @include respond-below(md) {
-      justify-content: center;
-      text-align: center;
+      /* justify-content: center;
+      text-align: center; */
     }
 
     .icon,
@@ -134,6 +134,7 @@
   display: flex;
   gap: spacing(4);
   margin-top: spacing(6);
+  justify-content: center;
 
   a {
     display: flex;

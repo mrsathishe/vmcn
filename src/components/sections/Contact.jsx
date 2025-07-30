@@ -47,22 +47,24 @@ const Contact = () => {
     try {
       // Note: For EmailJS to work with attachments, you need to configure it properly
       // This is a basic implementation that sends the form data
+
       const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
+        name: formData.name,
+        email: formData.email,
         phone: formData.phone,
-        subject: formData.subject,
+        title: formData.subject,
         message: formData.message,
         to_email: "vmcomputersnetworking@gmail.com", // Updated email from specifications
         attachments_count: formData.attachments.length,
+        time: new Date().toLocaleString(),
       };
 
       // Replace these with your actual EmailJS credentials
       await emailjs.send(
-        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+        "service_jbg94yk", // Replace with your EmailJS service ID
+        "template_ebf9xtj", // Replace with your EmailJS template ID
         templateParams,
-        "YOUR_PUBLIC_KEY" // Replace with your EmailJS public key
+        "_ZAsC8EEW93dGjrwO" // Replace with your EmailJS public key
       );
 
       setSubmitStatus("success");
@@ -225,9 +227,7 @@ const Contact = () => {
                     <option value="security-solutions">
                       Network Security Solutions
                     </option>
-                    <option value="wifi-installation">
-                      WiFi Installation & Optimization
-                    </option>
+
                     <option value="server-setup">
                       Server Setup & Configuration
                     </option>
@@ -244,7 +244,9 @@ const Contact = () => {
                     <option value="cctv-installation">
                       CCTV & Surveillance Systems
                     </option>
-                    <option value="partnership">Business Partnership</option>
+                    <option value="pc-build-and-upgrade">
+                      PC Build and Upgrade
+                    </option>
                     <option value="other">Other Inquiry</option>
                   </select>
                 </div>
@@ -263,7 +265,7 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="attachments">Attachments</label>
                 <div className="file-input-wrapper">
                   <input
@@ -290,7 +292,7 @@ const Contact = () => {
                   Supported formats: PDF, DOC, DOCX, JPG, PNG, TXT (Max 10MB
                   each)
                 </small>
-              </div>
+              </div> */}
 
               <button
                 type="submit"

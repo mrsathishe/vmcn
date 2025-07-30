@@ -65,6 +65,16 @@
   @include respond-below(md) {
     padding: spacing(8) spacing(4);
   }
+
+  .hero-title {
+    @include respond-below(md) {
+      font-size: font-size(3xl);
+    }
+
+    @include respond-below(sm) {
+      font-size: font-size(2xl);
+    }
+  }
 }
 .logo-section {
   margin-bottom: spacing(8);
@@ -89,7 +99,8 @@
 }
 
 .company-info {
-  .company-name {
+  .company-name,
+  .company-name-line2 {
     font-size: font-size(5xl);
     font-weight: font-weight(bold);
     color: color(white) !important;
