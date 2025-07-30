@@ -16,6 +16,20 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Disable body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMenuOpen]);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -57,7 +71,7 @@ const Navigation = () => {
                   {item.label}
                 </button>
                 {item.id === "contact" && (
-                  <div className="contact-icons">
+                  <div className="contact-icons desktop-only">
                     <div className="tooltip-container">
                       <div className="contact-icon phone-icon">📞</div>
                       <span className="tooltip">+91 9345305055</span>
@@ -72,6 +86,18 @@ const Navigation = () => {
                 )}
               </div>
             ))}
+
+            {/* Mobile contact icons - always shown in mobile menu */}
+            <div className="contact-icons mobile-only">
+              <div className="tooltip-container">
+                <div className="contact-icon phone-icon">📞</div>
+                <span className="tooltip">+91 9345305055</span>
+              </div>
+              <div className="tooltip-container">
+                <div className="contact-icon email-icon">✉️</div>
+                <span className="tooltip">vmcomputersnetworking@gmail.com</span>
+              </div>
+            </div>
           </div>
 
           <button
