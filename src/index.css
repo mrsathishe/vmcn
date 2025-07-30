@@ -1,2 +1,2 @@
-/* Import the main App styles */
-@import url("./App.css");
+/* Import the main SCSS styles */
+@import url("./styles/main.scss");

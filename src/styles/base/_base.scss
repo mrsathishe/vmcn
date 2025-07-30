@@ -1,0 +1,161 @@
+// ===================================
+// BASE STYLES
+// ===================================
+
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+// Reset and normalize
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; // 16px base
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; // Account for fixed navigation
+}
+
+body {
+  font-family: font-family(primary);
+  font-size: font-size(base);
+  font-weight: font-weight(normal);
+  line-height: 1.6;
+  color: color(text);
+  background-color: color(white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: color(primary);
+  font-weight: font-weight(semibold);
+  line-height: 1.2;
+  margin-bottom: spacing(4);
+}
+
+// Apply default colors only to body content, not special sections
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  color: color(primary);
+}
+
+h1 {
+  font-size: font-size(5xl);
+  font-weight: font-weight(bold);
+}
+
+h2 {
+  font-size: font-size(4xl);
+  font-weight: font-weight(semibold);
+}
+
+h3 {
+  font-size: font-size(2xl);
+  font-weight: font-weight(medium);
+}
+
+h4 {
+  font-size: font-size(xl);
+  font-weight: font-weight(medium);
+}
+
+h5 {
+  font-size: font-size(lg);
+  font-weight: font-weight(medium);
+}
+
+h6 {
+  font-size: font-size(base);
+  font-weight: font-weight(medium);
+}
+
+p {
+  margin-bottom: spacing(4);
+  color: color(dark-gray);
+}
+
+a {
+  color: color(secondary);
+  text-decoration: none;
+  transition: color transition(normal) ease;
+
+  &:hover {
+    color: color(focus);
+  }
+
+  @include focus-ring;
+}
+
+ul,
+ol {
+  margin-bottom: spacing(4);
+  padding-left: spacing(6);
+
+  li {
+    margin-bottom: spacing(2);
+    color: color(dark-gray);
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Form elements
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+
+  @include focus-ring;
+}
+
+// Common utility classes
+.container {
+  @include container;
+}
+
+.section {
+  @include section;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}

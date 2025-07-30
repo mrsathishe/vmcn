@@ -1,6 +1,6 @@
 import React from "react";
-import homeNetworkImage from "../assets/Home Network Infrastructure.png";
-import "./HomeNetwork.css";
+import homeNetworkImage from "../../assets/home-network.png";
+import "./HomeNetwork.scss";
 
 const HomeNetwork = () => {
   return (

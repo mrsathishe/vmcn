@@ -8,7 +8,7 @@ import {
   FaFile,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
-import "./Contact.css";
+import "./Contact.scss";
 
 const Contact = () => {
   const formRef = useRef();

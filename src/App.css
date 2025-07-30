@@ -7,7 +7,7 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #333 !important;
+  color: #333;
   scroll-behavior: smooth;
   background-color: #ffffff;
 }
@@ -42,40 +42,39 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--primary-color) !important;
+  color: var(--primary-color);
   margin-bottom: 1rem;
 }
 
 /* Ensure all text elements have proper colors */
 p,
 span,
-div,
 li {
-  color: var(--dark-gray) !important;
+  color: var(--dark-gray);
 }
 
 /* Override for specific elements that should be dark */
 .product-card h3,
 .service-card h3,
 .value-card h4 {
-  color: var(--primary-color) !important;
+  color: var(--primary-color);
 }
 
 .product-description,
 .service-description {
-  color: var(--dark-gray) !important;
+  color: var(--dark-gray);
 }
 
 /* Additional text color fixes */
 .product-card p,
 .product-card li,
 .product-card span {
-  color: var(--dark-gray) !important;
+  color: var(--dark-gray);
 }
 
 .section-title,
 .section-subtitle {
-  color: var(--primary-color) !important;
+  color: var(--primary-color);
 }
 
 h1 {
@@ -95,7 +94,7 @@ h3 {
 
 p {
   margin-bottom: 1rem;
-  color: var(--dark-gray) !important;
+  color: var(--dark-gray);
 }
 
 /* Buttons */

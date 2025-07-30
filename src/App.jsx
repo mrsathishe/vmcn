@@ -1,34 +1,17 @@
-import React, { useState, useEffect } from "react";
-import Header from "./components/Header";
-import Navigation from "./components/Navigation";
-import Hero from "./components/Hero";
-import EnterpriseNetworking from "./components/EnterpriseNetworking";
-import IoT from "./components/IoT";
-import HomeNetwork from "./components/HomeNetwork";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import "./App.css";
+import React from "react";
+import Navigation from "./components/layout/Navigation";
+import Hero from "./components/sections/Hero";
+import EnterpriseNetworking from "./components/services/EnterpriseNetworking";
+import IoT from "./components/services/IoT";
+import HomeNetwork from "./components/services/HomeNetwork";
+import Contact from "./components/sections/Contact";
+import Footer from "./components/layout/Footer";
+import "./styles/main.scss";
 
 function App() {
-  const [showHeader, setShowHeader] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const heroSection = document.getElementById("hero");
-      if (heroSection) {
-        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-        setShowHeader(window.scrollY > heroBottom - 100);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <div className="App">
-      {showHeader && <Header />}
-      {showHeader && <Navigation />}
+      <Navigation />
       <main>
         <Hero />
         <EnterpriseNetworking />

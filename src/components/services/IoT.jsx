@@ -1,6 +1,6 @@
 import React from "react";
-import iotImage from "../assets/IoT Solutions.png";
-import "./IoT.css";
+import iotImage from "../../assets/iot-solutions.png";
+import "./IoT.scss";
 
 const IoT = () => {
   return (

@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  FaFacebook,
-  FaTwitter,
-  FaLinkedin,
-  FaInstagram,
-  FaPhone,
-  FaEnvelope,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
-import "./Footer.css";
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+import "./Footer.scss";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -22,18 +14,18 @@ const Footer = () => {
 
   const quickLinks = [
     { id: "hero", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "services", label: "Services" },
-    { id: "products", label: "Products" },
+    { id: "enterprise-networking", label: "Enterprise" },
+    { id: "iot", label: "IoT" },
+    { id: "home-network", label: "Home Network" },
   ];
 
   const services = [
-    "Business Consulting",
-    "Process Automation",
-    "Team Management",
-    "Technology Solutions",
-    "Risk Management",
-    "Marketing Strategy",
+    "Enterprise Networking",
+    "IoT Solutions",
+    "Home Network Infrastructure",
+    "Network Security",
+    "IT Support & Maintenance",
+    "Network Design & Setup",
   ];
 
   const socialLinks = [
@@ -48,11 +40,12 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3 className="footer-logo">VMCN</h3>
+            <h3 className="footer-logo">VM Computers and Networking</h3>
             <p className="footer-description">
-              Leading the way in business solutions with innovative approaches
-              and dedicated service. Transform your business with our expert
-              guidance.
+              Professional networking solutions for modern businesses. From
+              enterprise networking to smart home solutions - we deliver
+              cutting-edge technology infrastructure that keeps your business
+              connected and your home automated.
             </p>
             <div className="social-links">
               {socialLinks.map((social, index) => (
@@ -109,36 +102,32 @@ const Footer = () => {
             <h4>Contact Info</h4>
             <div className="contact-info">
               <div className="contact-item">
-                <FaPhone className="contact-icon" />
-                <span>+1 (555) 123-4567</span>
+                <span className="contact-icon phone-icon">📞</span>
+                <span>+91 9345305055</span>
               </div>
               <div className="contact-item">
-                <FaEnvelope className="contact-icon" />
-                <span>info@vmcn.com</span>
-              </div>
-              <div className="contact-item">
-                <FaMapMarkerAlt className="contact-icon" />
-                <span>
-                  123 Business Ave, Suite 100
+                <span className="contact-icon email-icon">✉️</span>
+                <span className="email-address">
+                  vmcomputersnetworking
                   <br />
-                  City, State 12345
+                  @gmail.com
+                </span>
+              </div>
+              <div className="contact-item">
+                <span className="contact-icon location-icon">📍</span>
+                <span>
+                  Chennai, Tamil Nadu
+                  <br />
+                  India
                 </span>
               </div>
             </div>
 
             <div className="newsletter">
-              <h5>Newsletter</h5>
-              <p>Subscribe to get updates on our latest offers and services.</p>
-              <div className="newsletter-form">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="newsletter-input"
-                />
-                <button className="btn btn-primary newsletter-btn">
-                  Subscribe
-                </button>
-              </div>
+              <h5>Get In Touch</h5>
+              <p>
+                Contact us for professional networking solutions and IT support.
+              </p>
             </div>
           </div>
         </div>
@@ -146,7 +135,8 @@ const Footer = () => {
         <div className="footer-bottom">
           <div className="footer-bottom-content">
             <p>
-              &copy; {currentYear} VMCN Business Solutions. All rights reserved.
+              &copy; {currentYear} VM Computers and Networking. All rights
+              reserved.
             </p>
             <div className="footer-bottom-links">
               <a href="#" className="footer-bottom-link">
@@ -154,9 +144,6 @@ const Footer = () => {
               </a>
               <a href="#" className="footer-bottom-link">
                 Terms of Service
-              </a>
-              <a href="#" className="footer-bottom-link">
-                Cookie Policy
               </a>
             </div>
           </div>

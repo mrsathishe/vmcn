@@ -1,6 +1,6 @@
 import React from "react";
-import enterpriseImage from "../assets/Enterprise Networking Solutions.png";
-import "./EnterpriseNetworking.css";
+import enterpriseImage from "../../assets/enterprise-networking.png";
+import "./EnterpriseNetworking.scss";
 
 const EnterpriseNetworking = () => {
   return (

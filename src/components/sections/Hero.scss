@@ -1,0 +1,188 @@
+// ===================================
+// HERO SECTION STYLES
+// ===================================
+
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+.hero {
+  min-height: 100vh;
+  position: relative;
+  @include flex-center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../../assets/hero-background.png") center center/cover
+      no-repeat,
+    linear-gradient(
+      135deg,
+      color(primary) 0%,
+      color(secondary) 50%,
+      #1565c0 100%
+    );
+  z-index: 1;
+}
+
+.hero-overlay {
+  @include overlay(rgba(color(black), 0.3));
+  z-index: 2;
+
+  &::before {
+    z-index: 2;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 50rem;
+  margin: 0 auto;
+  color: color(white);
+  padding: spacing(12) spacing(8);
+  text-align: center;
+
+  // Override base typography colors for hero section
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: color(white) !important;
+  }
+
+  p {
+    color: color(light-gray) !important;
+  }
+
+  @include respond-below(md) {
+    padding: spacing(8) spacing(4);
+  }
+}
+.logo-section {
+  margin-bottom: spacing(8);
+
+  .company-logo {
+    width: 7.5rem;
+    height: 7.5rem;
+    margin: 0 auto spacing(6);
+    border-radius: border-radius(full);
+    box-shadow: shadow(xl);
+    transition: transform transition(normal) ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    @include respond-below(md) {
+      width: 6rem;
+      height: 6rem;
+    }
+  }
+}
+
+.company-info {
+  .company-name {
+    font-size: font-size(5xl);
+    font-weight: font-weight(bold);
+    color: color(white) !important;
+    margin-bottom: spacing(4);
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(color(black), 0.5);
+
+    @include respond-below(md) {
+      font-size: font-size(4xl);
+    }
+
+    @include respond-below(sm) {
+      font-size: font-size(3xl);
+    }
+  }
+
+  .company-subtitle {
+    font-size: font-size(xl);
+    font-weight: font-weight(medium);
+    color: color(light-gray) !important;
+    margin-bottom: spacing(6);
+    text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(color(black), 0.5);
+
+    @include respond-below(md) {
+      font-size: font-size(lg);
+    }
+  }
+
+  .company-description {
+    font-size: font-size(lg);
+    color: color(light-gray) !important;
+    line-height: 1.7;
+    text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(color(black), 0.3);
+    max-width: 37.5rem;
+    margin: 0 auto;
+
+    @include respond-below(md) {
+      font-size: font-size(base);
+    }
+  }
+}
+
+.cta-section {
+  margin-top: spacing(12);
+
+  @include respond-below(md) {
+    margin-top: spacing(8);
+  }
+}
+
+.cta-button {
+  @include button-primary;
+  padding: spacing(4) spacing(8);
+  font-size: font-size(lg);
+  font-weight: font-weight(semibold);
+  border-radius: border-radius(xl);
+  box-shadow: shadow(lg);
+  transition: all transition(normal) ease;
+
+  &:hover {
+    transform: translateY(-0.125rem);
+    box-shadow: shadow(xl);
+  }
+
+  @include respond-below(md) {
+    padding: spacing(3) spacing(6);
+    font-size: font-size(base);
+  }
+}
+
+// Animation for hero content
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.875rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content {
+  animation: fadeInUp 1s ease-out;
+}
+
+.logo-section {
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.company-info {
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.cta-section {
+  animation: fadeInUp 1s ease-out 0.6s both;
+}

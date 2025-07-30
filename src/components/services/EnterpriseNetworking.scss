@@ -1,0 +1,68 @@
+// ===================================
+// ENTERPRISE NETWORKING STYLES
+// ===================================
+
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+.enterprise-networking {
+  @include section;
+
+  & {
+    background: linear-gradient(135deg, color(bg-light) 0%, #c3cfe2 100%);
+  }
+
+  .container {
+    @include container;
+  }
+
+  .section-content {
+    @include flex-between;
+    align-items: center;
+    gap: spacing(16);
+
+    @include respond-below(md) {
+      @include flex-column;
+      gap: spacing(8);
+    }
+
+    @include respond-to(md) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .content-text {
+    h2 {
+      color: color(primary);
+      font-size: font-size(4xl);
+      margin-bottom: spacing(4);
+      font-weight: font-weight(bold);
+
+      @include respond-below(md) {
+        font-size: font-size(3xl);
+      }
+    }
+
+    p {
+      color: color(dark-gray);
+      font-size: font-size(lg);
+      line-height: 1.6;
+      margin-bottom: spacing(6);
+    }
+  }
+
+  .content-image {
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: border-radius(xl);
+      box-shadow: shadow(xl);
+      transition: transform transition(normal) ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
+}

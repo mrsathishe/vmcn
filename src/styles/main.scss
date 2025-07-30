@@ -1,0 +1,300 @@
+// ===================================
+// MAIN SCSS FILE
+// ===================================
+
+// Import abstracts (variables and mixins)
+@use "abstracts/variables" as *;
+@use "abstracts/mixins" as *;
+
+// Import base styles
+@use "base/base";
+
+// Main app styles
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+// Button styles
+.btn {
+  @include button-base;
+  padding: spacing(3) spacing(6);
+  font-size: font-size(base);
+
+  &--primary {
+    @include button-primary;
+  }
+
+  &--secondary {
+    @include button-secondary;
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: color(primary);
+    border: 0.0625rem solid color(primary);
+
+    &:hover:not(:disabled) {
+      background-color: color(primary);
+      color: color(white);
+    }
+  }
+
+  &--large {
+    padding: spacing(4) spacing(8);
+    font-size: font-size(lg);
+  }
+
+  &--small {
+    padding: spacing(2) spacing(4);
+    font-size: font-size(sm);
+  }
+}
+
+// Form styles
+.form {
+  &__group {
+    margin-bottom: spacing(6);
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: spacing(2);
+    font-weight: font-weight(medium);
+    color: color(primary);
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: spacing(3) spacing(4);
+    border: 0.0625rem solid color(light-gray);
+    border-radius: border-radius(md);
+    font-size: font-size(base);
+    transition: border-color transition(normal) ease;
+
+    &:focus {
+      outline: none;
+      border-color: color(secondary);
+      box-shadow: 0 0 0 0.125rem rgba(color(secondary), 0.25);
+    }
+
+    &::placeholder {
+      color: color(dark-gray);
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 7.5rem;
+  }
+}
+
+// Card component
+.card {
+  @include card;
+
+  &__header {
+    margin-bottom: spacing(4);
+
+    h3 {
+      margin-bottom: spacing(2);
+    }
+  }
+
+  &__body {
+    margin-bottom: spacing(4);
+  }
+
+  &__footer {
+    padding-top: spacing(4);
+    border-top: 0.0625rem solid color(light-gray);
+  }
+}
+
+// Section styles
+.section {
+  &--light {
+    background-color: color(bg-light);
+  }
+
+  &--dark {
+    background-color: color(bg-dark);
+    color: color(white);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: color(white);
+    }
+
+    p,
+    li {
+      color: color(light-gray);
+    }
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: spacing(12);
+
+    @include respond-below(md) {
+      margin-bottom: spacing(8);
+    }
+  }
+
+  &__title {
+    font-size: font-size(4xl);
+    margin-bottom: spacing(4);
+
+    @include respond-below(md) {
+      font-size: font-size(3xl);
+    }
+  }
+
+  &__subtitle {
+    font-size: font-size(lg);
+    color: color(dark-gray);
+    max-width: 37.5rem;
+    margin: 0 auto;
+  }
+
+  &__content {
+    display: grid;
+    gap: spacing(8);
+    align-items: center;
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr 1fr;
+      gap: spacing(12);
+    }
+
+    &--reverse {
+      @include respond-to(md) {
+        direction: rtl;
+
+        > * {
+          direction: ltr;
+        }
+      }
+    }
+  }
+}
+
+// Content sections
+.content {
+  &__image {
+    img {
+      border-radius: border-radius(lg);
+      box-shadow: shadow(lg);
+      transition: transform transition(normal) ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  &__text {
+    h2 {
+      margin-bottom: spacing(6);
+    }
+
+    p {
+      font-size: font-size(lg);
+      line-height: 1.7;
+      margin-bottom: spacing(6);
+    }
+  }
+}
+
+// Grid utilities
+.grid {
+  display: grid;
+  gap: spacing(6);
+
+  &--2 {
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &--3 {
+    @include respond-to(sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &--4 {
+    @include respond-to(sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+// Spacing utilities
+@each $key, $value in $spacing {
+  .m-#{$key} {
+    margin: $value;
+  }
+  .mt-#{$key} {
+    margin-top: $value;
+  }
+  .mr-#{$key} {
+    margin-right: $value;
+  }
+  .mb-#{$key} {
+    margin-bottom: $value;
+  }
+  .ml-#{$key} {
+    margin-left: $value;
+  }
+  .mx-#{$key} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+  .my-#{$key} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+
+  .p-#{$key} {
+    padding: $value;
+  }
+  .pt-#{$key} {
+    padding-top: $value;
+  }
+  .pr-#{$key} {
+    padding-right: $value;
+  }
+  .pb-#{$key} {
+    padding-bottom: $value;
+  }
+  .pl-#{$key} {
+    padding-left: $value;
+  }
+  .px-#{$key} {
+    padding-left: $value;
+    padding-right: $value;
+  }
+  .py-#{$key} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
-import "./Hero.css";
-import mainLogo from "../assets/Main logo.jpg";
+import "./Hero.scss";
+import mainLogo from "../../assets/main-logo.jpg";
 
 const Hero = () => {
   return (
@@ -25,15 +25,8 @@ const Hero = () => {
               </div>
             </div>
             <h2 className="hero-title">
-              Professional Networking Solutions for{" "}
-              <span className="highlight">Modern Businesses</span>
+              Professional Networking Solutions for Modern Businesses
             </h2>
-            <p className="hero-description">
-              From Enterprise Networking to Smart Home Solutions - We deliver
-              cutting-edge technology infrastructure that keeps your business
-              connected and your home automated. Our expertise spans network
-              design, IoT implementation, and comprehensive IT support.
-            </p>
           </div>
         </div>
       </div>
