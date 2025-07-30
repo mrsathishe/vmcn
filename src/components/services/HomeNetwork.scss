@@ -18,8 +18,11 @@
 
   .section-content {
     @include flex-between;
-    align-items: center;
-    gap: spacing(16);
+    
+    & {
+      align-items: center;
+      gap: spacing(16);
+    }
 
     @include respond-below(md) {
       @include flex-column;

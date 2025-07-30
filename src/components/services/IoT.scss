@@ -18,9 +18,12 @@
 
   .section-content {
     @include flex-between;
-    align-items: center;
-    gap: spacing(16);
-    min-height: 37.5rem;
+    
+    & {
+      align-items: center;
+      gap: spacing(16);
+      min-height: 37.5rem;
+    }
 
     @include respond-below(md) {
       @include flex-column;
