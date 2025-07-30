@@ -181,10 +181,13 @@
 
   @include respond-below(md) {
     justify-content: center;
-    margin-top: spacing(2);
+    margin-top: spacing(4);
     margin-left: 0;
     padding-left: 0;
     border-left: none;
+    border-top: 0.0625rem solid color(light-gray);
+    padding-top: spacing(4);
+    width: 100%;
   }
 }
 
@@ -220,6 +223,12 @@
   &.phone-icon,
   &.email-icon {
     font-size: font-size(sm);
+  }
+
+  @include respond-below(md) {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: font-size(md);
   }
 }
 .tooltip {

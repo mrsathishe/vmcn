@@ -120,7 +120,8 @@
     }
 
     input,
-    textarea {
+    textarea,
+    select {
       width: 100%;
       padding: spacing(3) spacing(4);
       border: 0.0625rem solid color(light-gray);
@@ -137,6 +138,46 @@
 
       &::placeholder {
         color: color(dark-gray);
+      }
+    }
+
+    select {
+      background-color: color(white);
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236b7280'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right spacing(3) center;
+      background-size: 1.25rem;
+      padding-right: spacing(10);
+      appearance: none;
+      cursor: pointer;
+
+      &:focus {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23007bff'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      }
+
+      option {
+        padding: spacing(2) spacing(3);
+        font-size: font-size(base);
+        color: color(text);
+        background-color: color(white);
+
+        &:checked {
+          background-color: color(secondary);
+          color: color(white);
+        }
+
+        &:hover {
+          background-color: color(light-blue);
+        }
+      }
+
+      // Mobile specific styling
+      @media (max-width: 768px) {
+        font-size: 1rem; // Prevent zoom on iOS
+        padding: spacing(3);
+        background-size: 1rem;
+        background-position: right spacing(2) center;
+        padding-right: spacing(8);
       }
     }
 
