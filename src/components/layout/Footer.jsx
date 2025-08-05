@@ -14,18 +14,15 @@ const Footer = () => {
 
   const quickLinks = [
     { id: "hero", label: "Home" },
-    { id: "enterprise-networking", label: "Enterprise" },
-    { id: "iot", label: "IoT" },
-    { id: "home-network", label: "Home Network" },
+    { id: "about", label: "About Us" },
+    { id: "contact", label: "Contact" },
   ];
 
-  const services = [
-    "Enterprise Networking",
-    "IoT Solutions",
-    "Home Network Infrastructure",
-    "Network Security",
-    "IT Support & Maintenance",
-    "Network Design & Setup",
+  const serviceLinks = [
+    { id: "enterprise-networking", label: "Enterprise Networking" },
+    { id: "iot", label: "IoT Solutions" },
+    { id: "home-network", label: "Home Network" },
+    { id: "website-development", label: "Website Development" },
   ];
 
   const socialLinks = [
@@ -76,23 +73,20 @@ const Footer = () => {
                   </button>
                 </li>
               ))}
-              <li>
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className="footer-link"
-                >
-                  Contact
-                </button>
-              </li>
             </ul>
           </div>
 
           <div className="footer-section">
             <h4>Our Services</h4>
             <ul className="footer-links">
-              {services.map((service, index) => (
+              {serviceLinks.map((service, index) => (
                 <li key={index}>
-                  <span className="footer-link">{service}</span>
+                  <button
+                    onClick={() => scrollToSection(service.id)}
+                    className="footer-link"
+                  >
+                    {service.label}
+                  </button>
                 </li>
               ))}
             </ul>

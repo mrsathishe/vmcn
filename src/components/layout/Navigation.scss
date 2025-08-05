@@ -65,7 +65,7 @@
 .nav-menu {
   & {
     display: flex;
-    gap: spacing(8);
+    gap: spacing(4);
     list-style: none;
   }
 
@@ -199,6 +199,95 @@
   }
 }
 
+// Dropdown styles
+.dropdown {
+  position: relative;
+
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: spacing(1);
+
+    .dropdown-arrow {
+      font-size: font-size(xs);
+      transition: transform transition(normal) ease;
+    }
+  }
+
+  // Rotate arrow when dropdown is open
+  &:hover .dropdown-toggle .dropdown-arrow,
+  &.open .dropdown-toggle .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: color(white);
+    border: 1px solid color(light-gray);
+    border-radius: border-radius(md);
+    box-shadow: shadow(lg);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all transition(normal) ease;
+    z-index: z-index(dropdown);
+
+    &.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      width: 100%;
+      padding: spacing(3) spacing(4);
+      border: none;
+      background: none;
+      color: color(primary);
+      font-size: font-size(sm);
+      text-align: left;
+      cursor: pointer;
+      transition: all transition(normal) ease;
+      border-bottom: 1px solid color(light-gray);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: color(light-gray);
+        color: color(secondary);
+      }
+
+      &.active {
+        background: rgba(color(secondary), 0.1);
+        color: color(secondary);
+        font-weight: font-weight(medium);
+      }
+    }
+  }
+
+  @include respond-below(md) {
+    .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      border: none;
+      background: rgba(color(light-gray), 0.5);
+      margin-top: spacing(2);
+
+      .dropdown-item {
+        padding: spacing(2) spacing(6);
+        font-size: font-size(base);
+      }
+    }
+  }
+}
 .nav-toggle {
   & {
     display: none;

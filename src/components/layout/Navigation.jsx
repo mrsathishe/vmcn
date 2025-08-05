@@ -7,6 +7,25 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  const handleDropdownToggle = (itemId) => {
+    setOpenDropdown(openDropdown === itemId ? null : itemId);
+  };
+
+  const handleDropdownHover = (itemId) => {
+    // Only use hover on non-touch devices
+    if (!("ontouchstart" in window)) {
+      setOpenDropdown(itemId);
+    }
+  };
+
+  const handleDropdownLeave = () => {
+    // Only use hover on non-touch devices
+    if (!("ontouchstart" in window)) {
+      setOpenDropdown(null);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,9 +94,18 @@ const Navigation = () => {
 
   const menuItems = [
     { id: "hero", label: "Home" },
-    { id: "enterprise-networking", label: "Enterprise" },
-    { id: "iot", label: "IoT" },
-    { id: "home-network", label: "Home Network" },
+    { id: "about", label: "About Us" },
+    {
+      id: "services",
+      label: "Our Services",
+      isDropdown: true,
+      items: [
+        { id: "enterprise-networking", label: "Enterprise Networking" },
+        { id: "iot", label: "IoT Solutions" },
+        { id: "home-network", label: "Home Network" },
+        { id: "website-development", label: "Website Development" },
+      ],
+    },
     { id: "contact", label: "Contact" },
   ];
 
@@ -93,14 +121,52 @@ const Navigation = () => {
           <div className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
             {menuItems.map((item) => (
               <div key={item.id} className="nav-item">
-                <button
-                  className={`nav-link ${
-                    activeSection === item.id ? "active" : ""
-                  }`}
-                  onClick={() => scrollToSection(item.id)}
-                >
-                  {item.label}
-                </button>
+                {item.isDropdown ? (
+                  <div
+                    className={`dropdown ${
+                      openDropdown === item.id ? "open" : ""
+                    }`}
+                    onMouseEnter={() => handleDropdownHover(item.id)}
+                    onMouseLeave={handleDropdownLeave}
+                  >
+                    <button
+                      className="nav-link dropdown-toggle"
+                      onClick={() => handleDropdownToggle(item.id)}
+                    >
+                      {item.label}
+                      <span className="dropdown-arrow">▼</span>
+                    </button>
+                    <div
+                      className={`dropdown-menu ${
+                        openDropdown === item.id ? "show" : ""
+                      }`}
+                    >
+                      {item.items.map((subItem) => (
+                        <button
+                          key={subItem.id}
+                          className={`dropdown-item ${
+                            activeSection === subItem.id ? "active" : ""
+                          }`}
+                          onClick={() => {
+                            scrollToSection(subItem.id);
+                            setOpenDropdown(null);
+                          }}
+                        >
+                          {subItem.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    className={`nav-link ${
+                      activeSection === item.id ? "active" : ""
+                    }`}
+                    onClick={() => scrollToSection(item.id)}
+                  >
+                    {item.label}
+                  </button>
+                )}
                 {item.id === "contact" && (
                   <div className="contact-icons desktop-only">
                     <div className="tooltip-container">

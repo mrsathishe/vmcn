@@ -87,14 +87,19 @@
 }
 
 .contact-info {
+  @include respond-below(md) {
+    text-align: center;
+  }
+
   .contact-item {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: spacing(4);
+    text-align: left;
 
     @include respond-below(md) {
-      /* justify-content: center;
-      text-align: center; */
+      justify-content: center;
+      text-align: center;
     }
 
     .icon,
@@ -103,10 +108,11 @@
       margin-right: spacing(3);
       font-size: font-size(lg);
       flex-shrink: 0;
-      margin-top: 0.125rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 24px;
+      height: 24px;
 
       &.phone-icon,
       &.email-icon,
@@ -115,6 +121,8 @@
         background: none;
         border: none;
         padding: 0;
+        width: 28px;
+        height: 28px;
       }
     }
 

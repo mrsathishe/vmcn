@@ -35,6 +35,26 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
+
+    // On desktop, image goes to the right
+    .content-image {
+      order: 2;
+    }
+
+    .content-text {
+      order: 1;
+    }
+
+    // On mobile, image comes first
+    @include respond-below(md) {
+      .content-image {
+        order: 1;
+      }
+
+      .content-text {
+        order: 2;
+      }
+    }
   }
 
   .content-text {

@@ -134,7 +134,7 @@ const Contact = () => {
             <div className="contact-items">
               {contactInfo.map((item, index) => (
                 <div key={index} className="contact-item">
-                  <div className="contact-icon">{item.icon}</div>
+                  <div className="contact-info-icon">{item.icon}</div>
                   <div className="contact-details">
                     <h4>{item.title}</h4>
                     {item.details.map((detail, detailIndex) => (
@@ -150,9 +150,13 @@ const Contact = () => {
               <p>
                 Call us directly for urgent matters or schedule a consultation.
               </p>
-              <button className="btn btn-secondary">
-                <FaPhone /> Call Now
-              </button>
+              <a
+                href="tel:+919345305055"
+                className="btn btn-secondary call-now-btn"
+              >
+                <FaPhone className="phone-icon" />
+                <span>Call Now</span>
+              </a>
             </div>
           </div>
 
@@ -194,19 +198,20 @@ const Contact = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="phone">Phone Number</label>
+                  <label htmlFor="phone">Phone Number *</label>
                   <input
                     type="tel"
                     id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
+                    required
                     placeholder="Enter your phone number"
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="subject">Subject *</label>
+                  <label htmlFor="subject">Required Service *</label>
                   <select
                     id="subject"
                     name="subject"
@@ -214,7 +219,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                   >
-                    <option value="">Select a subject</option>
+                    <option value="">Select a service</option>
                     <option value="consultation">
                       Free Network Consultation
                     </option>

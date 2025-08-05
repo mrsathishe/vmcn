@@ -27,6 +27,14 @@
     @include respond-below(md) {
       @include flex-column;
       gap: spacing(8);
+
+      .content-image {
+        order: 1;
+      }
+
+      .content-text {
+        order: 2;
+      }
     }
 
     @include respond-to(md) {
