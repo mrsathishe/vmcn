@@ -167,6 +167,7 @@ const Navigation = () => {
                     {item.label}
                   </button>
                 )}
+
                 {item.id === "contact" && (
                   <div className="contact-icons desktop-only">
                     <div className="tooltip-container">

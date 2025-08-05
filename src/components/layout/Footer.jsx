@@ -116,7 +116,6 @@ const Footer = () => {
                 </span>
               </div>
             </div>
-
             <div className="newsletter">
               <h5>Get In Touch</h5>
               <p>

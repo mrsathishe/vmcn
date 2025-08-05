@@ -31,13 +31,14 @@ const Contact = () => {
     }));
   };
 
-  const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
-    setFormData((prev) => ({
-      ...prev,
-      attachments: files,
-    }));
-  };
+  // Commented out file handling functionality
+  // const handleFileChange = (e) => {
+  //   const files = Array.from(e.target.files);
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     attachments: files,
+  //   }));
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +48,6 @@ const Contact = () => {
     try {
       // Note: For EmailJS to work with attachments, you need to configure it properly
       // This is a basic implementation that sends the form data
-
       const templateParams = {
         name: formData.name,
         email: formData.email,
@@ -181,7 +181,6 @@ const Contact = () => {
                     placeholder="Enter your full name"
                   />
                 </div>
-
                 <div className="form-group">
                   <label htmlFor="email">Email Address *</label>
                   <input
@@ -209,7 +208,6 @@ const Contact = () => {
                     placeholder="Enter your phone number"
                   />
                 </div>
-
                 <div className="form-group">
                   <label htmlFor="subject">Required Service *</label>
                   <select
@@ -232,7 +230,6 @@ const Contact = () => {
                     <option value="security-solutions">
                       Network Security Solutions
                     </option>
-
                     <option value="server-setup">
                       Server Setup & Configuration
                     </option>
