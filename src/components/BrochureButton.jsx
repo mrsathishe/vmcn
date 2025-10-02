@@ -42,10 +42,11 @@ const BrochureButton = () => {
               <li>IoT Solutions</li>
               <li>Security Systems</li>
               <li>IT Support Services</li>
+              <li>Website or Web Application Development</li>
             </ul>
             <button className="download-btn" onClick={handleDownload}>
               <FaDownload />
-              Download PDF
+              Download Brochure
             </button>
           </div>
         </div>
