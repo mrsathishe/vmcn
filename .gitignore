@@ -24,7 +24,6 @@ dist-ssr
 *.sw?
 
 # Additional cleanup
-*.pdf
 .env
 .env.local
 .env.development.local
