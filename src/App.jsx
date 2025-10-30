@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import PrivacyPolicyPopup from "./components/PrivacyPolicyPopup";
+import { privacyPolicyContent } from "./privacyPolicyContent";
 import Navigation from "./components/layout/Navigation";
 import Hero from "./components/sections/Hero";
 import About from "./components/sections/About";
@@ -12,6 +14,17 @@ import BrochureButton from "./components/BrochureButton";
 import "./styles/main.scss";
 
 function App() {
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
+  // const [policyContent, setPolicyContent] = useState(privacyPolicyContent);
+
+  const handlePrivacyPolicyClick = () => {
+    setShowPrivacyPolicy(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPrivacyPolicy(false);
+  };
+
   return (
     <div className="App">
       <Navigation />
@@ -24,8 +37,11 @@ function App() {
         <WebsiteDevelopment />
         <Contact />
       </main>
-      <Footer />
+      <Footer onPrivacyPolicyClick={handlePrivacyPolicyClick} />
       <BrochureButton />
+      {showPrivacyPolicy && (
+        <PrivacyPolicyPopup content={privacyPolicyContent} onClose={handleClosePopup} />
+      )}
     </div>
   );
 }

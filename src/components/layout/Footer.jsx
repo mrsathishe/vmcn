@@ -2,7 +2,7 @@ import React from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 import "./Footer.scss";
 
-const Footer = () => {
+const Footer = ({ onPrivacyPolicyClick }) => {
   const currentYear = new Date().getFullYear();
 
   const scrollToSection = (sectionId) => {
@@ -132,9 +132,9 @@ const Footer = () => {
               reserved.
             </p>
             <div className="footer-bottom-links">
-              <a href="#" className="footer-bottom-link">
+              <button onClick={onPrivacyPolicyClick} className="footer-bottom-link">
                 Privacy Policy
-              </a>
+              </button>
               <a href="#" className="footer-bottom-link">
                 Terms of Service
               </a>
