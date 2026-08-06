@@ -7,7 +7,7 @@ import {
   FaPaperPlane,
   FaFile,
 } from "react-icons/fa";
-import { sendContactMessage } from "../../services/mailApi";
+import { sendContactMessage, HONEYPOT_FIELD, MIN_SUBMIT_SECONDS } from "../../services/mailApi";
 import "./Contact.scss";
 
 const SERVICE_OPTIONS = [
@@ -27,6 +27,13 @@ const SERVICE_OPTIONS = [
 
 const Contact = () => {
   const formRef = useRef();
+  // Set when the section first renders and read at submit, to satisfy the mail API's
+  // minimum fill time. Because the whole page renders at once, this clock starts on
+  // page load rather than when the visitor reaches the form.
+  const renderedAtRef = useRef(Date.now());
+  // Read from the DOM, not from state: a bot that fills the hidden input does it
+  // directly, which never runs React's onChange.
+  const honeypotRef = useRef(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -58,6 +65,21 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Refuse locally rather than spending a round trip on a `too_fast` the server
+    // would return anyway, and say how long is left instead of just "too quickly".
+    const elapsedMs = Date.now() - renderedAtRef.current;
+    const remainingSeconds = Math.ceil((MIN_SUBMIT_SECONDS * 1000 - elapsedMs) / 1000);
+    if (remainingSeconds > 0) {
+      setErrorMessage(
+        `Please take a moment to review your message — you can send it in ${remainingSeconds} second${
+          remainingSeconds === 1 ? "" : "s"
+        }.`
+      );
+      setSubmitStatus("error");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus("");
     setErrorMessage("");
@@ -69,6 +91,8 @@ const Contact = () => {
         phone: formData.phone,
         message: formData.message,
         service: formData.subject,
+        elapsedMs,
+        honeypot: honeypotRef.current?.value ?? "",
       });
 
       setSubmitStatus("success");
@@ -80,6 +104,9 @@ const Contact = () => {
         message: "",
         attachments: [],
       });
+      // A fresh window for the next message, so the timing check doesn't keep
+      // measuring from the original page load.
+      renderedAtRef.current = Date.now();
 
       // Reset file input
       if (formRef.current) {
@@ -176,6 +203,21 @@ const Contact = () => {
               className="contact-form"
             >
               <h3>Send Us a Message</h3>
+
+              {/* Bot bait: a real visitor never sees this, so anything in it means the
+                  submission was automated. Positioned off-screen rather than
+                  `display: none`, which some bots skip. */}
+              <div className="honeypot" aria-hidden="true">
+                <label htmlFor={HONEYPOT_FIELD}>Company URL</label>
+                <input
+                  type="text"
+                  id={HONEYPOT_FIELD}
+                  name={HONEYPOT_FIELD}
+                  ref={honeypotRef}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
 
               <div className="form-row">
                 <div className="form-group">
@@ -300,10 +342,9 @@ const Contact = () => {
               )}
 
               {submitStatus === "error" && (
-                <div className="form-message error">
-                  Failed to send message. Please try again or contact us
-                  directly.
-                  {errorMessage && <span> ({errorMessage})</span>}
+                <div className="form-message error" role="alert">
+                  {errorMessage ||
+                    "Failed to send message. Please try again or contact us directly."}
                 </div>
               )}
             </form>
