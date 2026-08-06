@@ -7,8 +7,23 @@ import {
   FaPaperPlane,
   FaFile,
 } from "react-icons/fa";
-import emailjs from "@emailjs/browser";
+import { sendContactMessage } from "../../services/mailApi";
 import "./Contact.scss";
+
+const SERVICE_OPTIONS = [
+  "Free Network Consultation",
+  "Enterprise Network Setup",
+  "Home Network Solutions",
+  "Network Security Solutions",
+  "Server Setup & Configuration",
+  "IT Support & Maintenance",
+  "Computer Repair Services",
+  "Hardware Procurement",
+  "Backup & Recovery Solutions",
+  "CCTV & Surveillance Systems",
+  "PC Build and Upgrade",
+  "Other Inquiry",
+];
 
 const Contact = () => {
   const formRef = useRef();
@@ -22,6 +37,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,28 +60,16 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus("");
+    setErrorMessage("");
 
     try {
-      // Note: For EmailJS to work with attachments, you need to configure it properly
-      // This is a basic implementation that sends the form data
-      const templateParams = {
+      await sendContactMessage({
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        title: formData.subject,
         message: formData.message,
-        to_email: "vmcomputersnetworking@gmail.com", // Updated email from specifications
-        attachments_count: formData.attachments.length,
-        time: new Date().toLocaleString(),
-      };
-
-      // Replace these with your actual EmailJS credentials
-      await emailjs.send(
-        "service_jbg94yk", // Replace with your EmailJS service ID
-        "template_ebf9xtj", // Replace with your EmailJS template ID
-        templateParams,
-        "_ZAsC8EEW93dGjrwO" // Replace with your EmailJS public key
-      );
+        service: formData.subject,
+      });
 
       setSubmitStatus("success");
       setFormData({
@@ -83,7 +87,12 @@ const Contact = () => {
         if (fileInput) fileInput.value = "";
       }
     } catch (error) {
-      console.error("EmailJS Error:", error);
+      console.error("Mail API Error:", error);
+      setErrorMessage(
+        error.name === "AbortError"
+          ? "The request timed out."
+          : error.message
+      );
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -218,38 +227,11 @@ const Contact = () => {
                     required
                   >
                     <option value="">Select a service</option>
-                    <option value="consultation">
-                      Free Network Consultation
-                    </option>
-                    <option value="enterprise-networking">
-                      Enterprise Network Setup
-                    </option>
-                    <option value="home-networking">
-                      Home Network Solutions
-                    </option>
-                    <option value="security-solutions">
-                      Network Security Solutions
-                    </option>
-                    <option value="server-setup">
-                      Server Setup & Configuration
-                    </option>
-                    <option value="it-support">IT Support & Maintenance</option>
-                    <option value="computer-repair">
-                      Computer Repair Services
-                    </option>
-                    <option value="hardware-procurement">
-                      Hardware Procurement
-                    </option>
-                    <option value="backup-solutions">
-                      Backup & Recovery Solutions
-                    </option>
-                    <option value="cctv-installation">
-                      CCTV & Surveillance Systems
-                    </option>
-                    <option value="pc-build-and-upgrade">
-                      PC Build and Upgrade
-                    </option>
-                    <option value="other">Other Inquiry</option>
+                    {SERVICE_OPTIONS.map((service) => (
+                      <option key={service} value={service}>
+                        {service}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -321,6 +303,7 @@ const Contact = () => {
                 <div className="form-message error">
                   Failed to send message. Please try again or contact us
                   directly.
+                  {errorMessage && <span> ({errorMessage})</span>}
                 </div>
               )}
             </form>
