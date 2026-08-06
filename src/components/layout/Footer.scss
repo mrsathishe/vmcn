@@ -174,3 +174,33 @@
     font-size: font-size(sm);
   }
 }
+
+.footer-bottom-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: spacing(6);
+  margin-top: spacing(3);
+
+  @include respond-below(sm) {
+    @include flex-column;
+    gap: spacing(2);
+  }
+}
+
+.footer-bottom-link {
+  color: color(light-gray);
+  font-size: font-size(sm);
+  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color transition(normal) ease;
+
+  &:hover {
+    color: color(white);
+    text-decoration: underline;
+  }
+}

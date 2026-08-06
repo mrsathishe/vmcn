@@ -2,7 +2,7 @@ import React from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 import "./Footer.scss";
 
-const Footer = ({ onPrivacyPolicyClick }) => {
+const Footer = ({ onPrivacyPolicyClick, onTermsClick }) => {
   const currentYear = new Date().getFullYear();
 
   const scrollToSection = (sectionId) => {
@@ -23,6 +23,7 @@ const Footer = ({ onPrivacyPolicyClick }) => {
     { id: "iot", label: "IoT Solutions" },
     { id: "home-network", label: "Home Network" },
     { id: "website-development", label: "Website Development" },
+    { id: "cctv-security", label: "CCTV & Security Systems" },
   ];
 
   const socialLinks = [
@@ -132,12 +133,15 @@ const Footer = ({ onPrivacyPolicyClick }) => {
               reserved.
             </p>
             <div className="footer-bottom-links">
-              <button onClick={onPrivacyPolicyClick} className="footer-bottom-link">
+              <button
+                onClick={onPrivacyPolicyClick}
+                className="footer-bottom-link"
+              >
                 Privacy Policy
               </button>
-              <a href="#" className="footer-bottom-link">
-                Terms of Service
-              </a>
+              <button onClick={onTermsClick} className="footer-bottom-link">
+                Terms &amp; Conditions
+              </button>
             </div>
           </div>
         </div>

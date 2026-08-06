@@ -1,16 +1,14 @@
 import React from "react";
-import "./PrivacyPolicyPopup.scss";
+import "./LegalPopup.scss";
 
-const PrivacyPolicyPopup = ({ content, onClose }) => {
+const LegalPopup = ({ content, onClose }) => {
   return (
     <div className="popup-overlay">
       <div className="popup-content">
         <button className="close-button" onClick={onClose}>
           &times;
         </button>
-        <div className="privacy-policy-text">
-          {content}
-        </div>
+        <div className="legal-text">{content}</div>
         <button className="close-button-bottom" onClick={onClose}>
           Close
         </button>
@@ -19,4 +17,4 @@ const PrivacyPolicyPopup = ({ content, onClose }) => {
   );
 };
 
-export default PrivacyPolicyPopup;
+export default LegalPopup;

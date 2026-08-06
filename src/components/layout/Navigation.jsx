@@ -104,6 +104,7 @@ const Navigation = () => {
         { id: "iot", label: "IoT Solutions" },
         { id: "home-network", label: "Home Network" },
         { id: "website-development", label: "Website Development" },
+        { id: "cctv-security", label: "CCTV & Security Systems" },
       ],
     },
     { id: "contact", label: "Contact" },

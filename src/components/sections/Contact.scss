@@ -31,6 +31,12 @@
 }
 
 .contact-info {
+  // The form sits inside a padded card, so match that inset here to line the two
+  // column headings up on the same row.
+  @include respond-to(md) {
+    padding-top: spacing(8);
+  }
+
   h3 {
     color: color(primary);
     margin-bottom: spacing(4);
