@@ -66,32 +66,28 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Refuse locally rather than spending a round trip on a `too_fast` the server
-    // would return anyway, and say how long is left instead of just "too quickly".
-    const elapsedMs = Date.now() - renderedAtRef.current;
-    const remainingSeconds = Math.ceil((MIN_SUBMIT_SECONDS * 1000 - elapsedMs) / 1000);
-    if (remainingSeconds > 0) {
-      setErrorMessage(
-        `Please take a moment to review your message — you can send it in ${remainingSeconds} second${
-          remainingSeconds === 1 ? "" : "s"
-        }.`
-      );
-      setSubmitStatus("error");
-      return;
-    }
-
     setIsSubmitting(true);
     setSubmitStatus("");
     setErrorMessage("");
 
     try {
+      // The server's spam guard refuses anything sent before its minimum fill time,
+      // so an early submit has to wait it out. Wait here instead of rejecting and
+      // asking for a second click: one click sends, whenever it happens.
+      const remainingMs =
+        MIN_SUBMIT_SECONDS * 1000 - (Date.now() - renderedAtRef.current);
+      if (remainingMs > 0) {
+        await new Promise((resolve) => setTimeout(resolve, remainingMs));
+      }
+
       await sendContactMessage({
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
         message: formData.message,
         service: formData.subject,
-        elapsedMs,
+        // Measured after the wait, or it would still be the too-early value.
+        elapsedMs: Date.now() - renderedAtRef.current,
         honeypot: honeypotRef.current?.value ?? "",
       });
 
